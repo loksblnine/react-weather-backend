@@ -12,6 +12,7 @@ let options = {
 let geoCoder = (0, node_geocoder_1.default)(options);
 const getWeather = async (req, resp) => {
     try {
+        console.log(123, req);
         const { lat, lng } = req.body;
         const getDataByCoords = await geoCoder.reverse({ lat: lat, lon: lng });
         const { data } = await axios_1.default.get(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(String(getDataByCoords[0].city))}&units=metric&appid=${process.env.APP_ID}`);
